@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" 
+      xmlns = "http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Movie manager</title>
+
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $('#customSort').change(function() {
+                console.log("change")
+                if( $('#customSort').find(":selected").text() == "between") {
+                    $('#rangeend').prop( "disabled", false );
+                } else {
+                    $('#rangeend').prop( "disabled", true );
+                }
+            });
+
+            // $('#sortBy').change(function() {
+            //     console.log("change2")
+            //     if( $('#sortBy').find(":selected").text() == "By Name ASC") {
+            //         window.location.thhref = "@{/movies/findpage(page=0, sort=name+','+asc)}";
+            //     } else if ($('#sortBy').find(":selected").text() == "By Name DESC"){
+            //         window.location.thhref = "@{/movies/findpage(page=0, sort=name+','+desc)}";
+            //     } else if ($('#sortBy').find(":selected").text() == "By Rank ASC"){
+            //         window.location.thhref = "@{/movies/findpage(page=0, sort=rank+','+asc)}";
+            //     } else if ($('#sortBy').find(":selected").text() == "By Rank DESC"){
+            //         console.log("desc rank");
+            //         window.location.thhref = "@{/movies/findpage(page=0, sort=rank+','+desc)}";
+            //     } else if ($('#sortBy').find(":selected").text() == "By Year ASC"){
+            //         window.location.thhref = "@{/movies/findpage(page=0, sort=year+','+asc)}";
+            //     } else if ($('#sortBy').find(":selected").text() == "By Year DESC"){
+            //         window.location.thhref = "@{/movies/findpage(page=0, sort=year+','+desc)}";
+            //     }
+            // });
+
+        });
+
+    </script>
+    <style>
+        .inline {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="../views/header :: header"></div>
+
+<div class="container">
+
+    <h2>Movies</h2>
+
+    <nav aria-label="Page navigation example">
+        <span th:with="noPrev=${page.number<=0}, noNext=${page.number+1==page.totalPages}">
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${noPrev} ? 'disabled'">
+                <a class="page-link" href="#"
+                   th:href="@{/movies/findpage(page=${page.number-1}, sort=${sort}+','+${dir})}"
+                   th:tableindex="${noPrev} ? '-1'">Previous</a>
+            </li>
+            <li class="page-item" th:classappend="${noNext} ? 'disabled'">
+                <a class="page-link" href="#"
+                   th:href="@{/movies/findpage(page=${page.number+1}, sort=${sort}+','+${dir})}"
+                   th:tableindex="${noNext} ? '-1'">Next</a>
+            </li>
+        </ul>
+        </span>
+
+    </nav>
+
+
+
+    <table class="table table-hover table-striped">
+        <thead>
+        <tr th:each="movie : ${page}">
+            <th>
+                <a th:href="@{/movies/{id}(id=${movie.id})}" th:text="${movie.name}">Name</a>
+            </th>
+            <th>
+                <a th:text="${movie.rank}">Rank</a>
+            </th>
+            <th>
+            <a th:text="${movie.year}">Year</a>
+            </th>
+
+        </tr>
+        </thead>
+
+
+    </table>
+
+</div>
+</body>
+</html>
+<!--<form method="post" class="inline" id="sortBy">-->
+<!--    <select>-->
+<!--        <option value="byNameAsc">By Name ASC</option>-->
+<!--        <option value="byNameDesc">By Name DESC</option>-->
+<!--        <option value="byRankAsc">By Rank ASC</option>-->
+<!--        <option value="byRankDesc">By Rank DESC</option>-->
+<!--        <option value="byYearAsc">By Year ASC</option>-->
+<!--        <option value="byYearDesc">By Year DESC</option>-->
+<!--    </select>-->
+<!--</form>-->
