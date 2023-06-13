@@ -1,4 +1,4 @@
-package ru.imdbmanager.controller;
+package ru.imdbmanager.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

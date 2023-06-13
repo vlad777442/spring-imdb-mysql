@@ -1,11 +1,11 @@
-package ru.imdbmanager.controller;
+package ru.imdbmanager.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import ru.imdbmanager.model.Genre;
 import ru.imdbmanager.model.Movie;
+import ru.imdbmanager.repository.MovieRepository;
 
 import java.util.List;
 

@@ -7,18 +7,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.RequestContextUtils;
-import ru.imdbmanager.model.Genre;
 import ru.imdbmanager.model.Movie;
 import ru.imdbmanager.model.NoSuchMovieException;
+import ru.imdbmanager.repository.MovieRepository;
+import ru.imdbmanager.service.MovieService;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/movies")
