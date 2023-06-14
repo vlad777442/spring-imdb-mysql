@@ -11,3 +11,7 @@ $ git clone https://github.com/vlad777442/spring-imdb
 in PhpMyAdmin;
 * Create and configure Tomcat Local Server in Intellij Idea;
 * Launch application.
+
+![Starting](./images/Screenshot_1.jpg)
+![Starting](./images/Screenshot_2.jpg)
+![Starting](./images/Screenshot_3.jpg)
