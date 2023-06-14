@@ -9,7 +9,7 @@ import ru.imdbmanager.repository.MovieRepository;
 
 import java.util.List;
 
-@Service("movieService")
+@Service
 public class MovieService {
     @Autowired
     MovieRepository movieRepository;
